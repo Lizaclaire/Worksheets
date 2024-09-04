@@ -1,0 +1,157 @@
+---
+title: "RWorksheet_gagante#1"
+author: "Liza Claire Gagante"
+date: "2024-09-04"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1.
+```{r}
+age <- c(34, 28, 22, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27, 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 37, 42, 53, 41, 51, 35, 24, 33, 41)
+
+```
+a. How many data points?
+```{r}
+length(age)
+```
+
+b. Write the code and it's output.
+```{r}
+age <- c(34, 28, 22, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27, 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 37, 42, 53, 41, 51, 35, 24, 33, 41)
+print(age)
+```
+2.Find the reciprocal of the values for age.
+```{r}
+reciprocal_age <- 1 / age 
+library("MASS")
+fractions(reciprocal_age)
+```
+
+3. Assign also new_age <- c(age, 0, age)
+```{r}
+new_age <- c(age, 0, age)
+new_age
+```
+What happen to the new_age?
+-it prints the age then it prints zero and prints the age again.
+
+4. Sort the values for age.
+```{r}
+sorted_age <- sort(age)
+sorted_age
+```
+
+5. 
+```{r}
+min_age <- min (age)
+max_age <- max (age)
+min_age
+max_age
+```
+
+6. 
+```{r}
+data <- c (2.4, 2.8, 2.1, 2.5, 2.4, 2.2, 2.5, 2.3, 2.5, 2.3, 2.4, 2.7)
+```
+
+a.
+```{r}
+length(data)
+```
+b. 
+```{r}
+data <- c (2.4, 2.8, 2.1, 2.5, 2.4, 2.2, 2.5, 2.3, 2.5, 2.3, 2.4, 2.7)
+print(data)
+```
+
+7. 
+```{r}
+doubled_data <- data*2
+doubled_data
+```
+8.1
+```{r}
+hundred <- seq(1, 100)
+hundred
+```
+8.2 
+```{r}
+num <- seq(20, 60)
+num
+```
+8.3
+```{r}
+mean(20:60)
+```
+8.4
+```{r}
+sum(51:91)
+```
+8.5
+```{r}
+thousands <- seq(1:1000)
+thousands
+```
+a.How many data points from 8.1 to 8.4
+```{r}
+length(hundred) + length(num) + length(mean)+length(sum)
+```
+ 
+
+b.Write the R code and its output from 8.1 to 8.4
+```{r}
+length(hundred) + length(num) + length(mean) + length(sum)
+```
+
+
+c.For 8.5 find only maximum data points until 10.
+```{r}
+max(thousands[thousands <-10])
+```
+
+9.
+```{r}
+Filter(function(i) {all(i %% c(3,5,7) != 0 )}, seq(100))
+```
+
+10.
+```{r}
+ten <- seq(100,1)
+ten
+```
+11. 
+```{r}
+numbers<-1:24
+multiples<-numbers[numbers%%3==0 |
+numbers%%5==0]
+print(multiples)
+```
+```{r}
+sum_multiples<-sum(multiples)
+print(sum_multiples)
+```
+a.136
+b.
+```{r}
+length(ten)+length(numbers)+length(multiples)+length(sum_multiples)
+```
+
+12.
+It shows an error unexpected '}'
+
+x <-{0 + x + 5 +}
+
+
+13.
+```{r}
+score<- c(72, 86, 92, 63, 88, 89, 91, 92, 75, 75, 77)
+score[2]
+score[3]
+```
+
+
+

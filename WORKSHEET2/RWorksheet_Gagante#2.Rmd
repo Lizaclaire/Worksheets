@@ -292,7 +292,6 @@ price, stars, accomodation_type, and
 ratings. Write the R script.
 ```{r}
 selcol <- hotels_vienna[, c("country", "neighbourhood", "price", "stars", "accommodation_type", "rating")]
-print(selcol)
 ```
 
 d. Save the data as **new.RData to your RStudio. Write the

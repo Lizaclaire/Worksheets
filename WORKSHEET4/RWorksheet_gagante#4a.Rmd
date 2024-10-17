@@ -88,3 +88,13 @@ summary(factor_months_vector)
 ```
 The result of months_vector it states the Length, Class and Mode. While the factor_months_vector states how many months in the data for example December, December has 1. As what I saw they are both useful because it is easy for me to understand and determine how many types of data from the raw data itself.
 
+4. Create a vector and factor for the table below.
+```{r}
+direction_vector <- c("East", "West", "North", "West", "North", "West", "North", "West")
+
+factor_data <- factor(direction_vector)
+
+new_order_data <- factor(factor_data,levels = c("East","West","North"))
+print(new_order_data)
+```
+

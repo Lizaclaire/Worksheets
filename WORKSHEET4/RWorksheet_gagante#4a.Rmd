@@ -1,0 +1,90 @@
+---
+title: "RWorksheet_gagante#4a.Rmd"
+author: "Liza Claire Gagante"
+date: "2024-10-17"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. The table below shows the data about shoe size and height. Create a data frame.
+```{r}
+shoe_size <- c(6.5, 9.0, 8.5, 8.5, 7.0, 9.0, 9.5, 13.0, 7.5, 10.5, 10.5, 12.0, 10.5, 
+               13.0, 11.5, 8.5, 5.0, 10.0, 6.5, 7.5, 8.5, 10.5, 8.5, 10.5, 11.0, 9.0, 13.0)
+height <- c(66.0, 68.0, 65.0, 65.0, 64.0, 71.0, 72.0, 72.0, 74.5, 67.0, 74.5, 71.0, 71.0,
+            77.0, 72.0, 59.0, 62.0, 72.0, 66.0, 64.0, 67.0, 73.0, 69.0, 72.0, 70.0, 69.0, 70.0)
+gender <- c("F", "F", "F", "F", "F", "F", "F", "M", "F", "M", "M", "M", "M", 
+            "M", "M", "F", "F", "M", "F", "F", "F", "M", "F", "M", "M", "M", "M")
+
+data <- data.frame(Shoe_size = shoe_size, Height = height, Gender = gender)
+
+data
+```
+
+a. Describe the data.
+  The table shows data regarding the shoe size, height, and gender of each individuals.
+
+b. Create a subset by males and females with their corresponding shoe size and height.
+What its result? Show the R scripts.
+```{r}
+male_data <- subset(data, Gender == "M", select = c(Shoe_size, Height))
+
+male_data
+```
+
+```{r}
+female_data <- subset(data, Gender == "F", select = c(Shoe_size, Height))
+
+female_data
+```
+
+
+c. Find the mean of shoe size and height of the respondents. Write the R scripts and its
+result.
+```{r}
+mean_shoe_size <- mean(data$Shoe_size)
+
+mean_shoe_size
+
+mean_height <- mean(data$Height)
+
+mean_height
+```
+
+d. Is there a relationship between shoe size and height? Why?
+
+
+2. Construct character vector months to a factor with factor() and assign the result to
+factor_months_vector. Print out factor_months_vector and assert that R prints out
+the factor levels below the actual values.
+Consider data consisting of the names of months:
+"March","April","January","November","January",
+"September","October","September","November","August",
+"January","November","November","February","May","August",
+"July","December","August","August","September","November","February",|
+April")
+
+```{r}
+months_vector <- c("March","April","January","November","January",
+"September","October","September","November","August",
+"January","November","November","February","May","August",
+"July","December","August","August","September","November","February",
+"April")
+
+factor_months_vector <- factor(months_vector)
+
+print(factor_months_vector)
+
+levels(factor_months_vector)
+```
+3. Then check the summary() of the months_vector and factor_months_vector. | Interpret the results of both vectors. Are they both equally useful in this case?
+```{r}
+summary(months_vector)
+```
+```{r}
+summary(factor_months_vector)
+```
+The result of months_vector it states the Length, Class and Mode. While the factor_months_vector states how many months in the data for example December, December has 1. As what I saw they are both useful because it is easy for me to understand and determine how many types of data from the raw data itself.
+

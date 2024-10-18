@@ -24,6 +24,7 @@ data
 ```
 
 a. Describe the data.
+  
   The table shows data regarding the shoe size, height, and gender of each individuals.
 
 b. Create a subset by males and females with their corresponding shoe size and height.
@@ -54,7 +55,7 @@ mean_height
 ```
 
 d. Is there a relationship between shoe size and height? Why?
-
+-Yes, beacuse as the height increases, shoe size tends to increase as well.
 
 2. Construct character vector months to a factor with factor() and assign the result to
 factor_months_vector. Print out factor_months_vector and assert that R prints out
@@ -100,5 +101,14 @@ print(new_order_data)
 5. Enter the data below in Excel with file name = import_march.csv
 a. Import the excel file into the Environment Pane using read.table() function.
 Write the code.
-
 b. View the dataset. Write the R scripts and its result.
+```{r}
+list.files()
+list.files("/cloud/project/")
+getwd()
+setwd("/cloud/project/WORKSHEET4")
+data <- read.table("import_march.csv", header = TRUE, sep = ",")
+str(data)
+```
+
+

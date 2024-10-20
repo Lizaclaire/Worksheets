@@ -129,5 +129,84 @@ selected_number <- readline(prompt = "Select a number from 1 to 50: ")
 7. Change
 a. Write a function that prints the minimum number of bills that must be paid, given the price of the snack.
 Input: Price of snack (a random number divisible by 50) Output: Minimum number of bills needed to purchase a snack.
+```{r}
+min_bills <- function(price) {
+  bills <- c(1000, 500, 200, 100, 50)
+  
+  num_bills <- 0
+  for(bill in bills) {
+    count <- price %/% bill
+    num_bills <- num_bills + count
+    
+    price <- price %% bill
+  }
+  
+  print(paste("Minimum number of bills needed to purchase a snack: ", num_bills))
+}
+
+min_bills(1650)
+```
+8. The following is each student’s math score for one semester. Based on this, answer the
+following questions.
+a. Create a dataframe from the above table. Write the R codes and its output.
+```{r}
+students <- data.frame(
+  Name = c("Annie", "Thea", "Steve", "Hanna"),
+  Grade1 = c(85, 65, 75, 95),
+  Grade2 = c(65, 75, 55, 75),
+  Grade3 = c(85, 90, 80, 100),
+  Grade4 = c(100, 90, 85, 90)
+)
+
+students
+```
+b. Without using the rowMean function, output the average score of students whose average
+math score over 90 points during the semester. write R code and its output.
+Example Output: Annie’s average grade this semester is 88.75.
+```{r}
+for (i in 1:nrow(students)) {
+  total_score <- students$Grade1[i] + students$Grade2[i] + students$Grade3[i] + students$Grade4[i]
+  avg_score <- total_score / 4
+  
+  if (avg_score > 90) {
+     formatted_output <- sprintf("%s's average grade this semester is %.2f.", students$Name[i], avg_score)
+    print(formatted_output)
+  }
+}
+```
+c. Without using the mean function, output as follows for the tests in which the average
+score was less than 80 out of 4 tests.
+Example output: The nth test was difficult.
+```{r}
+for (j in 2:5) { 
+  total_test_score <- sum(students[, j])
+  avg_test_score <- total_test_score / nrow(students)
+  
+  if (avg_test_score < 80) {
+    print(paste("The", j-1, "th test was difficult."))
+  }
+}
+```
+d. Without using the max function, output as follows for students whose highest score for
+a semester exceeds 90 points.
+Example Output: Annie’s highest grade this semester is 95.
+```{r}
+for (i in 1:nrow(students)) {
+  
+  grades <- c(students$Grade1[i], students$Grade2[i], students$Grade3[i], students$Grade4[i])
+  
+  highest_grade <- grades[1]
+  for (grade in grades) {
+    if (grade > highest_grade) {
+      highest_grade <- grade
+    }
+  }
+  
+  if (highest_grade > 90) {
+    print(paste(students$Name[i], "'s highest grade this semester is", highest_grade))
+  }
+}
+```
+
 
 

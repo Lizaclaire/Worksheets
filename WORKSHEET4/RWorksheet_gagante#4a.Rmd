@@ -101,14 +101,33 @@ print(new_order_data)
 5. Enter the data below in Excel with file name = import_march.csv
 a. Import the excel file into the Environment Pane using read.table() function.
 Write the code.
+```{r}
+data_excel <- read.table("import_march.csv")
+```
+
 b. View the dataset. Write the R scripts and its result.
 ```{r}
-list.files()
-list.files("/cloud/project/")
-getwd()
-setwd("/cloud/project/WORKSHEET4")
-data <- read.table("import_march.csv", header = TRUE, sep = ",")
-str(data)
+data_excel
 ```
+6. Full Search
+a. Create an R Program that allows the User to randomly select numbers from 1 to 50.Then display the chosen number. If the number is beyond the range of the selected choice,it will have to display a string “The number selected is beyond the range of 1 to 50”. If number 20 is inputted by the User, it will have to display “TRUE”, otherwise display the input number.
+
+```{r}
+exhaustive_search <- function(selected_number) {
+  
+  if(selected_number < 1 || selected_number > 50) {
+    print("The selected number is beyond the range of 1 to 50")
+  } else if(selected_number == 20) {
+    print("TRUE")
+  } else {
+    print(selected_number)
+  }
+}
+selected_number <- readline(prompt = "Select a number from 1 to 50: ")
+  exhaustive_search(selected_number)
+```
+7. Change
+a. Write a function that prints the minimum number of bills that must be paid, given the price of the snack.
+Input: Price of snack (a random number divisible by 50) Output: Minimum number of bills needed to purchase a snack.
 
 

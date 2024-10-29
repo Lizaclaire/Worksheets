@@ -88,6 +88,93 @@ barplot(gender_counts,
         col = c("blue", "pink"),
         legend = rownames(gender_counts))
 ```
+5. The monthly income of Dela Cruz family was spent on the following:
+Food Electricity Savings Miscellaneous
+60      10         5         25
+a. Create a piechart that will include labels in percentage.Add some colors and title of
+the chart. Write the R scripts and show its output.
+```{r}
+expenses <- c(Food = 60, Electricity = 10, Savings = 5, Miscellaneous = 25)
+percentages <- round(expenses / sum(expenses) * 100)
+labels <- paste(names(expenses), percentages, "%")
+colors <- c("pink", "red", "green", "purple")
+pie(expenses,
+    labels = labels,
+    col = colors,
+    main = "Dela Cruz Family Monthly Expenses")
+```
+6. Use the iris dataset.
+data(iris)
+a. Check for the structure of the dataset using the str() function. Describe what you have seen in the output.
+```{r}
+data(iris)
+
+str(iris)
+```
+#It will show that iris is a data frame with 150 observations and 5 variables:
+Sepal.Length: Numeric, lengths of sepals (in cm).
+Sepal.Width: Numeric, widths of sepals (in cm).
+Petal.Length: Numeric, lengths of petals (in cm).
+Petal.Width: Numeric, widths of petals (in cm).
+Species: Factor with 3 levels - setosa, versicolor, virginica.
+This gives us an idea of what data types are present in each column and how many levels the Species factor has. 
+
+b. Create an R object that will contain the mean of the sepal.length,
+sepal.width,petal.length,and petal.width. What is the R script and its result?
+```{r}
+means <- colMeans(subset(iris, select = -Species))
+means
+```
+c. Create a pie chart for the Species distribution. Add title, legends, and colors. Write the R script and its result.
+```{r}
+species_counts <- table(iris$Species)
+
+colors <- c("lightblue", "lightgreen", "lightgray")
+
+pie(species_counts,
+    main = "Species Distribution in Iris Dataset",
+    col = colors,
+    labels = names(species_counts))
+
+
+legend("topright", legend = names(species_counts), fill = colors)
+```
+d. Subset the species into setosa, versicolor, and virginica. Write the R scripts
+and show the last six (6) rows of each species.
+```{r}
+setosa <- subset(iris, Species == "setosa")
+versicolor <- subset(iris, Species == "versicolor")
+virginica <- subset(iris, Species == "virginica")
+
+
+tail(setosa)
+tail(versicolor)
+tail(virginica)
+```
+
+e. Create a scatterplot of the sepal.length and sepal.width using the different
+species(setosa,versicolor,virginica). Add a title = “Iris Dataset”, subtitle = “Sepal width and length, labels for the x and y axis, the pch symbol and colors should be based on the species.
+Hint: Need to convert to factors the species to store categorical variables.
+```{r}
+library(ggplot2)
+
+ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species, shape = Species)) +
+  geom_point(size = 3) +
+  labs(
+    title = "Iris Dataset",
+    subtitle = "Sepal Width and Length",
+    x = "Sepal Length (cm)",
+    y = "Sepal Width (cm)"
+  ) +
+  theme_minimal() +
+  scale_color_manual(values = c("setosa" = "blue", "versicolor" = "green", "virginica" = "red"))
+```
+f. Interpret the result.
+#The scatter plot of Sepal.Length vs. Sepal.Width shows the relationship between these two measurements for each species:
+
+#Setosa: Typically has smaller sepal lengths and widths, clustering separately from the other two species.
+#Versicolor and Virginica: Overlap more in their sepal dimensions, but Virginica generally has the largest sepal dimensions.
+#Overall Pattern: The species are distinguishable based on sepal size, with Setosa forming a distinct cluster. Versicolor and Virginica have some overlap, but Virginica tends to have larger sepal lengths and widths on average. This plot illustrates how sepal dimensions vary by species and how these features can help differentiate the species.
 
 
 

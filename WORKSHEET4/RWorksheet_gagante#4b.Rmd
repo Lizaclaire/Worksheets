@@ -63,8 +63,7 @@ data <- read.csv("Shoe_sizes.csv")
 
 head(data)
 ```
-b. Create a subset for gender(female and male). How many observations are there in
-Male? How about in Female? Write the R scripts and its output.
+b. Create a subset for gender(female and male). How many observations are there in Male? How about in Female? Write the R scripts and its output.
 ```{r}
 male_data <- subset(data, Gender == "M")
 female_data <- subset(data, Gender == "F")
@@ -85,7 +84,7 @@ barplot(gender_counts,
         main = "Number of Males and Females",
         xlab = "Gender",
         ylab = "Count",
-        col = c("blue", "pink"),
+        col = c("skyblue", "pink"),
         legend = rownames(gender_counts))
 ```
 5. The monthly income of Dela Cruz family was spent on the following:
@@ -97,7 +96,7 @@ the chart. Write the R scripts and show its output.
 expenses <- c(Food = 60, Electricity = 10, Savings = 5, Miscellaneous = 25)
 percentages <- round(expenses / sum(expenses) * 100)
 labels <- paste(names(expenses), percentages, "%")
-colors <- c("pink", "red", "green", "purple")
+colors <- c("pink", "beige", "yellow", "skyblue")
 pie(expenses,
     labels = labels,
     col = colors,
@@ -111,6 +110,7 @@ data(iris)
 
 str(iris)
 ```
+#The output shows the sepal length and width, petal width and length and also the species.
 #It will show that iris is a data frame with 150 observations and 5 variables:
 Sepal.Length: Numeric, lengths of sepals (in cm).
 Sepal.Width: Numeric, widths of sepals (in cm).
@@ -175,6 +175,109 @@ f. Interpret the result.
 #Setosa: Typically has smaller sepal lengths and widths, clustering separately from the other two species.
 #Versicolor and Virginica: Overlap more in their sepal dimensions, but Virginica generally has the largest sepal dimensions.
 #Overall Pattern: The species are distinguishable based on sepal size, with Setosa forming a distinct cluster. Versicolor and Virginica have some overlap, but Virginica tends to have larger sepal lengths and widths on average. This plot illustrates how sepal dimensions vary by species and how these features can help differentiate the species.
+b. Create an R object that will contain the mean of the sepal.length,
+sepal.width,petal.length,and petal.width. What is the R script and its result?
+
+
+c. Create a pie chart for the Species distribution. Add title, legends, and colors. Write
+the R script and its result.
+
+d. Subset the species into setosa, versicolor, and virginica. Write the R scripts
+and show the last six (6) rows of each species.
+
+e. Create a scatterplot of the sepal.length and sepal.width using the different
+species(setosa,versicolor,virginica). Add a title = “Iris Dataset”, subtitle = “Sepal
+width and length, labels for the x and y axis, the pch symbol and colors should be based on
+the species.
+Hint: Need to convert to factors the species to store categorical variables.
+
+f. Interpret the result.
+
+7. Import the alexa-file.xlsx. Check on the variations. Notice that there are extra whitespaces among black variants (Black Dot, Black Plus, Black Show, Black
+Spot). Also on the white variants (White Dot, White Plus, White Show, White
+Spot).
+```{r}
+library(readxl)
+
+alexa_data <- read_excel("alexa_file.xlsx")
+
+```
+a. Rename the white and black variants by using gsub() function.
+```{r}
+alexa_data$variation <- gsub("Black", "Dark", alexa_data$variation)
+alexa_data$variation <- gsub("White", "Light", alexa_data$variation)
+
+```
+Write the R scripts and show an example of the output by getting a snippet. To embed an image into Rmd, use the function below:
+```{r}
+library(knitr)
+
+values <- c(10, 5, 14)
+names <- c(4, 6, 8)
+colors <- c("red", "green", "blue")
+
+barplot(values, names.arg=names, col=colors, main="Change bar width", width=c(1, 0.5, 1.5))
+
+barplot(values, names.arg=names, col=colors, main="Change space between bars", space=c(0.2, 1, 0.5))
+```
+
+b. Get the total number of each variations and save it into another object. Save the object as variations.RData. Write the R scripts. What is its result?
+Hint: Use the dplyr package. Make sure to install it before loading the package.
+```{r}
+library(dplyr)
+
+
+variation_counts <- alexa_data %>%
+  count(variation)
+
+save(variation_counts, file = "variations.RData")
+
+print(variation_counts)
+```
+c. From the variations.RData, create a barplot(). Complete the details of the chart which include the title, color, labels of each bar.
+```{r}
+barplot(
+  variation_counts$n,                            
+  names.arg = variation_counts$variation,        
+  col = rainbow(length(variation_counts$variation)),  
+  main = "Product Variants and Totals",             
+  xlab = "Variation",                            
+  ylab = "Total",
+   las = 2,
+   cex.names = 0.8
+)
+```
+d. Create a barplot() for the black and white variations. Plot it in 1 frame, side by side. Complete the details of the chart.
+```{r}
+dark_variants <- subset(variation_counts, grepl("Dark", variation))
+light_variants <- subset(variation_counts, grepl("Light", variation))
+
+dark_variants
+light_variants
+
+if (nrow(dark_variants) > 0 & nrow(light_variants) > 0) {
+  max_length <- max(nrow(dark_variants), nrow(light_variants))
+  dark_data <- c(dark_variants$n, rep(NA, max_length - nrow(dark_variants)))
+  light_data <- c(light_variants$n, rep(NA, max_length - nrow(light_variants)))
+  
+    bar_data <- rbind(dark_data, light_data)
+  colnames(bar_data) <- c(dark_variants$variation, light_variants$variation)[1:max_length]
+
+   barplot(bar_data, 
+          beside = TRUE, 
+          col = c("darkgray", "lightgray"), 
+          main = "Dark and Light Variants Comparison", 
+          xlab = "Variation", 
+          ylab = "Total", 
+          names.arg = c(dark_variants$variation, light_variants$variation), 
+          legend.text = c("Dark Variants", "Light Variants"),
+          args.legend = list(x = "topright"))
+} else {
+  print("No data found for Dark or Light variants.")
+}
+```
+
+
 
 
 

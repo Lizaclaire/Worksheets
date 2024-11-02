@@ -16,15 +16,15 @@ Figure 1. It must contain vectorA = [1,2,3,4,5] and a 5 x 5 zero matrix.
 Hint: Use abs() function to get the absolute value
 ```{r}
 vectorA <- c(1, 2, 3, 4, 5)
-matrix_5x5 <- matrix( nrow = 5, ncol = 5)
+matrix5 <- matrix( nrow = 5, ncol = 5)
 
 for (i in 1:5) {
   for (j in 1:5) {
-    matrix_5x5[i, j] <- abs(i - j)
+    matrix5[i, j] <- abs(i - j)
   }
 }
 
-print(matrix_5x5)
+print(matrix5)
 ```
 2. Print the string "*" using for() function. The output should be the same as shown
 in Figure
@@ -39,21 +39,21 @@ for (i in 1:5) {
 up to 500. Use repeat and break statements. Write the R Scripts and its output.
 ```{r}
 # start <- as.integer(readline(prompt = "Enter the starting number: "))
+start <- 1
+a <- start
+b <- 1
+cat(a, b, sep = " ")
 
-#a <- start
-#b <- 1
-#cat(a, b, sep = " ")
-
-#repeat {
- # next_term <- a + b
- # if (!is.na(next_term) && next_term > 500) {
- #   break
-#  }
-#  cat(next_term, " ")
- # a <- b
-#  b <- next_term
-  #}
-#cat("\n")
+repeat {
+  next_term <- a + b
+  if (!is.na(next_term) && next_term > 500) {
+    break
+  }
+ cat(next_term, " ")
+  a <- b
+  b <- next_term
+  }
+cat("\n")
 ```
 4. Import the dataset as shown in Figure 1 you have created previously.
 a. What is the R script for importing an excel or a csv file? Display the first 6 rows of
@@ -110,14 +110,13 @@ data(iris)
 
 str(iris)
 ```
-#The output shows the sepal length and width, petal width and length and also the species.
 #It will show that iris is a data frame with 150 observations and 5 variables:
 Sepal.Length: Numeric, lengths of sepals (in cm).
 Sepal.Width: Numeric, widths of sepals (in cm).
 Petal.Length: Numeric, lengths of petals (in cm).
 Petal.Width: Numeric, widths of petals (in cm).
 Species: Factor with 3 levels - setosa, versicolor, virginica.
-This gives us an idea of what data types are present in each column and how many levels the Species factor has. 
+This gives us an idea of what data types are present in each column and how many levels the Species factor has.
 
 b. Create an R object that will contain the mean of the sepal.length,
 sepal.width,petal.length,and petal.width. What is the R script and its result?
@@ -125,11 +124,14 @@ sepal.width,petal.length,and petal.width. What is the R script and its result?
 means <- colMeans(subset(iris, select = -Species))
 means
 ```
-c. Create a pie chart for the Species distribution. Add title, legends, and colors. Write the R script and its result.
+
+
+c. Create a pie chart for the Species distribution. Add title, legends, and colors. Write
+the R script and its result.
 ```{r}
 species_counts <- table(iris$Species)
 
-colors <- c("lightblue", "lightgreen", "lightgray")
+colors <- c("purple", "yellow", "lightgray")
 
 pie(species_counts,
     main = "Species Distribution in Iris Dataset",
@@ -139,6 +141,7 @@ pie(species_counts,
 
 legend("topright", legend = names(species_counts), fill = colors)
 ```
+
 d. Subset the species into setosa, versicolor, and virginica. Write the R scripts
 and show the last six (6) rows of each species.
 ```{r}
@@ -153,7 +156,9 @@ tail(virginica)
 ```
 
 e. Create a scatterplot of the sepal.length and sepal.width using the different
-species(setosa,versicolor,virginica). Add a title = “Iris Dataset”, subtitle = “Sepal width and length, labels for the x and y axis, the pch symbol and colors should be based on the species.
+species(setosa,versicolor,virginica). Add a title = “Iris Dataset”, subtitle = “Sepal
+width and length, labels for the x and y axis, the pch symbol and colors should be based on
+the species.
 Hint: Need to convert to factors the species to store categorical variables.
 ```{r}
 library(ggplot2)
@@ -167,31 +172,15 @@ ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species, shap
     y = "Sepal Width (cm)"
   ) +
   theme_minimal() +
-  scale_color_manual(values = c("setosa" = "blue", "versicolor" = "green", "virginica" = "red"))
+  scale_color_manual(values = c("setosa" = "purple", "versicolor" = "yellow", "virginica" = "gray"))
 ```
+
 f. Interpret the result.
 #The scatter plot of Sepal.Length vs. Sepal.Width shows the relationship between these two measurements for each species:
 
-#Setosa: Typically has smaller sepal lengths and widths, clustering separately from the other two species.
+#Setosa: Typically has higher sepal lengths and widths, clustering separately from the other two species.
+
 #Versicolor and Virginica: Overlap more in their sepal dimensions, but Virginica generally has the largest sepal dimensions.
-#Overall Pattern: The species are distinguishable based on sepal size, with Setosa forming a distinct cluster. Versicolor and Virginica have some overlap, but Virginica tends to have larger sepal lengths and widths on average. This plot illustrates how sepal dimensions vary by species and how these features can help differentiate the species.
-b. Create an R object that will contain the mean of the sepal.length,
-sepal.width,petal.length,and petal.width. What is the R script and its result?
-
-
-c. Create a pie chart for the Species distribution. Add title, legends, and colors. Write
-the R script and its result.
-
-d. Subset the species into setosa, versicolor, and virginica. Write the R scripts
-and show the last six (6) rows of each species.
-
-e. Create a scatterplot of the sepal.length and sepal.width using the different
-species(setosa,versicolor,virginica). Add a title = “Iris Dataset”, subtitle = “Sepal
-width and length, labels for the x and y axis, the pch symbol and colors should be based on
-the species.
-Hint: Need to convert to factors the species to store categorical variables.
-
-f. Interpret the result.
 
 7. Import the alexa-file.xlsx. Check on the variations. Notice that there are extra whitespaces among black variants (Black Dot, Black Plus, Black Show, Black
 Spot). Also on the white variants (White Dot, White Plus, White Show, White
@@ -201,15 +190,28 @@ library(readxl)
 
 alexa_data <- read_excel("alexa_file.xlsx")
 
+head(alexa_data)
+
 ```
 a. Rename the white and black variants by using gsub() function.
 ```{r}
-alexa_data$variation <- gsub("Black", "Dark", alexa_data$variation)
-alexa_data$variation <- gsub("White", "Light", alexa_data$variation)
+alexa_data$variation <- gsub("Black  Dot", "BlackDot", alexa_data$variation)
+alexa_data$variation <- gsub("Black  Plus", "BlackPlus", alexa_data$variation)
+alexa_data$variation <- gsub("Black  Show", "BlackShow", alexa_data$variation)
+alexa_data$variation <- gsub("Black  Spot", "BlackSpot", alexa_data$variation)
+
+# Fix "White" variants
+alexa_data$variation <- gsub("White  Dot", "WhiteDot", alexa_data$variation)
+alexa_data$variation <- gsub("White  Plus", "WhitePlus", alexa_data$variation)
+alexa_data$variation <- gsub("White  Show", "WhiteShow", alexa_data$variation)
+alexa_data$variation <- gsub("White  Spot", "WhiteSpot", alexa_data$variation)
+
+alexa_data$variation[1052:2000]
 
 ```
 Write the R scripts and show an example of the output by getting a snippet. To embed an image into Rmd, use the function below:
 ```{r}
+
 library(knitr)
 
 values <- c(10, 5, 14)
@@ -249,32 +251,37 @@ barplot(
 ```
 d. Create a barplot() for the black and white variations. Plot it in 1 frame, side by side. Complete the details of the chart.
 ```{r}
-dark_variants <- subset(variation_counts, grepl("Dark", variation))
-light_variants <- subset(variation_counts, grepl("Light", variation))
+library(dplyr)
 
-dark_variants
-light_variants
+variation_counts <- alexa_data %>%
+  filter(grepl("Black|White", variation)) %>% # Filter for Black and White variations
+  count(variation)
 
-if (nrow(dark_variants) > 0 & nrow(light_variants) > 0) {
-  max_length <- max(nrow(dark_variants), nrow(light_variants))
-  dark_data <- c(dark_variants$n, rep(NA, max_length - nrow(dark_variants)))
-  light_data <- c(light_variants$n, rep(NA, max_length - nrow(light_variants)))
-  
-    bar_data <- rbind(dark_data, light_data)
-  colnames(bar_data) <- c(dark_variants$variation, light_variants$variation)[1:max_length]
+black_counts <- variation_counts %>%
+  filter(grepl("Black", variation))
+white_counts <- variation_counts %>%
+  filter(grepl("White", variation))
 
-   barplot(bar_data, 
-          beside = TRUE, 
-          col = c("darkgray", "lightgray"), 
-          main = "Dark and Light Variants Comparison", 
-          xlab = "Variation", 
-          ylab = "Total", 
-          names.arg = c(dark_variants$variation, light_variants$variation), 
-          legend.text = c("Dark Variants", "Light Variants"),
-          args.legend = list(x = "topright"))
-} else {
-  print("No data found for Dark or Light variants.")
-}
+par(mfrow = c(1, 2))
+
+variations <- variation_counts$variation
+counts <- variation_counts$n
+
+barplot(black_counts$n,
+        names.arg = black_counts$variation,
+        col = c("black", "pink", "green", "blue", "cyan"),
+        main = "Black Variants",
+        xlab = "Total Numbers",
+        ylab = "Variants",
+        ylim = c(0, max(black_counts$n) * 1.2))
+
+barplot(white_counts$n,
+        names.arg = white_counts$variation,
+        col = c("black", "pink", "green", "blue", "cyan"),
+        main = "White Variants",
+        xlab = "Total Numbers",
+        ylab = "Variants",
+        ylim = c(0, max(white_counts$n) * 1.2))
 ```
 
 

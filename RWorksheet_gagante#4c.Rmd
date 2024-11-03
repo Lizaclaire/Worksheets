@@ -143,7 +143,7 @@ ggplot(mpg_data, aes(x = cyl, y = displ, color = displ)) +
        y = "Engine Displacement") +
   theme_minimal()
 ```
-#Typically, as the number of cylinders increases, engine displacement (displ) also tends to increase. We might expect a positive relationship, with higher cylinder counts corresponding to larger engine displacements.
+#In general, engine displacement (displ) tends to increase in tandem with the number of cylinders. Larger engine displacements should be correlated with higher cylinder counts, as we should anticipate.
 
 6. Plot the relationship between displ (engine displacement) and hwy(highway miles per gallon). Mapped
 it with a continuous variable you have identified in #1-c. What is its result? Why it produced such
@@ -156,8 +156,9 @@ ggplot(mpg_data, aes(x = displ, y = hwy, color = cty)) +
        y = "Highway Miles per Gallon") +
   theme_minimal()
 ```
-#The color gradient represents city MPG (cty). Typically, we might see that cars with larger engine displacements (displ) have lower highway (hwy) and city (cty) MPG, producing a negative relationship between displacement and fuel efficiency.
-#Larger engines (high displ) generally consume more fuel, hence showing lower MPG on highways (hwy). This output would display a trend where displ negatively correlates with both hwy and cty.
+#City MPG (cty) is represented by the color gradient. There is typically a negative correlation between displacement and fuel efficiency, with cars with greater engine displacements (displ) having lower highway (hwy) and city (cty) MPG.
+#On highways (high displ), larger engines often use more gasoline, resulting in poorer MPG. A trend where displ has a negative correlation with both hwy and cty would be shown by this result.
+
 
 6. Import the traffic.csv onto your R environment.
 a. How many numbers of observation does it have? What are the variables of the traffic dataset the Show your answer.

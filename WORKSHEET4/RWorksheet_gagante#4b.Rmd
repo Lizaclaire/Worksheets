@@ -214,6 +214,7 @@ Write the R scripts and show an example of the output by getting a snippet. To e
 
 library(knitr)
 
+knitr::include_graphics("alexa-file.png")
 values <- c(10, 5, 14)
 names <- c(4, 6, 8)
 colors <- c("red", "green", "blue")

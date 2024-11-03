@@ -68,10 +68,11 @@ ggplot(model_counts, aes(x = reorder(manufacturer, -model), y = model)) +
 a. What does ggplot(mpg, aes(model, manufacturer)) + geom_point() show?
 #The y-axis represents different car models (model), and the x-axis represents different manufacturers (manufacturer).
 b. For you, is it useful? If not, how could you modify the data to make it more informative?
-#The plot created by ggplot(mpg, aes(model, manufacturer)) + geom_point() is not particularly useful as it only shows which manufacturers have which models. However, it lacks meaningful insight because it doesn’t indicate the frequency of models or other attributes (like production years, engine size, or fuel type).
-#Instead of plotting each model, aggregate the data to show how many unique models each manufacturer has produced. A bar chart can then show the count of unique models for each manufacturer, making it easy to compare the variety offered by each brand.
-#Adding production year data allows you to visualize how manufacturers’ model offerings have changed over time. For instance, a plot could show which years saw new models from each manufacturer, helping highlight trends like which manufacturers introduce new models frequently or have sustained popular models over multiple years.
-#If some models appear multiple times (perhaps in different configurations), you could adjust the plot to indicate the frequency of each model. Using point size, color intensity, or an additional label for each model can highlight the most common models for each manufacturer, showing which models were more prominent or had multiple configurations.
+# Since it just displays which manufacturers have which models, the plot produced by ggplot(mpg, aes(model, manufacturer)) + geom_point() is not very helpful. However, because it doesn't show the frequency of models or other characteristics (such as manufacturing years, engine size, or fuel type), it lacks useful insight.
+#To illustrate how many distinct models each manufacturer has made, aggregate the data rather than plotting each model separately. The number of distinct models produced by each manufacturer can then be displayed in a bar chart, which facilitates comparison of the range of options provided by each brand.
+#You may see how manufacturers' model options have evolved over time by including production year data. To illustrate trends, such as which manufacturers release new models regularly or maintain popular versions for several years, a plot could, for example, indicate which years each manufacturer released new models.
+#You might modify the graphic to show the frequency of each model if some of them appear more than once (perhaps in various configurations). The most popular models for each manufacturer can be identified by using point size, color intensity, or an extra label for each model. This will identify which models were more widely used or had different configurations.
+
 3. Plot the model and the year using ggplot(). Use only the top 20 observations. Write the codes and
 its results.
 ```{r}

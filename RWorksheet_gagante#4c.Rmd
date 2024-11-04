@@ -14,7 +14,12 @@ a. Show your solutions on how to import a csv file into the environment.
 #The simplest way to read a CSV file is by using the read.csv() function. This function will automatically assume that the first row contains headers.
 #If your CSV file uses a semicolon (;) as the separator instead of a comma, you can use read.csv2().
 #You can also use read.table(), which is more flexible but requires specifying the separator and other parameters.
-#The readr package provides the read_csv() function, which is generally faster and handles large files more efficiently.
+```{r}
+# read.csv()
+# read.csv2()
+# read.table()
+```
+
 
 b. Which variables from mpg dataset are categorical?
 #manufacturer
